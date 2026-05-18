@@ -1,0 +1,123 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const RANDOM = "אבגדהוזחטיכלמנסעפצקרשת";
+
+  // ✅ handle EACH body-text block separately
+  document.querySelectorAll(".body-text").forEach(container => {
+    const volatileSpans = Array.from(container.querySelectorAll(".volatile"));
+    const originals = volatileSpans.map(span => span.textContent);
+
+    let scrambleInterval = null;
+
+    function clearScramble() {
+      if (scrambleInterval) {
+        clearInterval(scrambleInterval);
+        scrambleInterval = null;
+      }
+    }
+
+    function scrambleOnce() {
+      volatileSpans.forEach((span, i) => {
+        const original = originals[i];
+        span.textContent = original
+          .split("")
+          .map(ch =>
+            ch === " "
+              ? " "
+              : RANDOM[Math.floor(Math.random() * RANDOM.length)]
+          )
+          .join("");
+      });
+    }
+
+    function showSlashes() {
+      volatileSpans.forEach((span, i) => {
+        span.textContent = originals[i].replace(/\S/g, "/");
+      });
+    }
+
+    function restoreOriginal() {
+      volatileSpans.forEach((span, i) => {
+        span.textContent = originals[i];
+      });
+    }
+
+    /* ===== HOVER ENTER ===== */
+    container.addEventListener("mouseenter", () => {
+      clearScramble();
+
+      const scrambleDuration = 300 + Math.random() * 1700; // 0.3–2s
+      const start = Date.now();
+
+      scrambleInterval = setInterval(() => {
+        scrambleOnce();
+
+        if (Date.now() - start >= scrambleDuration) {
+          clearScramble();
+          showSlashes(); // stay slashed while hovering
+        }
+      }, 60);
+    });
+
+    /* ===== HOVER LEAVE ===== */
+    container.addEventListener("mouseleave", () => {
+      clearScramble();
+
+      const restoreDuration = 500;
+      const start = Date.now();
+
+      scrambleInterval = setInterval(() => {
+        scrambleOnce();
+
+        if (Date.now() - start >= restoreDuration) {
+          clearScramble();
+          restoreOriginal(); // scramble back, then restore
+        }
+      }, 60);
+    });
+  });
+});
+const wheel = document.getElementById("wheel");
+const spinBtn = document.getElementById("spinBtn");
+
+let currentRotation = 0;
+let spinning = false;
+
+spinBtn.addEventListener("click", () => {
+  if (spinning) return;   // ✅ prevent double clicks
+  spinning = true;
+
+  const segments = 12;    // adjust if your wheel has different slices
+  const segmentAngle = 360 / segments;
+
+  const randomIndex = Math.floor(Math.random() * segments);
+  const targetAngle = randomIndex * segmentAngle;
+
+  const spins = 4;
+
+  const rotation =
+    spins * 360 + (360 - targetAngle);
+
+  currentRotation += rotation;
+
+  wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+setTimeout(() => {
+  spinning = false;
+
+  const randomFortune =
+    fortunes[Math.floor(Math.random() * fortunes.length)];
+
+  const overlay = document.getElementById("fortuneOverlay");
+  const text = document.getElementById("fortuneText");
+
+  text.textContent = randomFortune;
+  overlay.style.display = "flex";
+
+}, 3000);
+const d = today.getDate().toString().padStart(2, '0');
+const m = (today.getMonth() + 1).toString().padStart(2, '0');
+const y = today.getFullYear().toString().slice(-2);
+
+document.getElementById("date").textContent = `${d}.${m}.${y}`;
+
+});

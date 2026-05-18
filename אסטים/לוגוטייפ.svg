@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650.15 235.78">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: StamMF, StamMF;
+        font-size: 227px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #fffcea;
+      }
+
+      .cls-2 {
+        font-family: KedemMLv1AAA-Light, 'Kedem ML v1 AAA';
+        font-size: 148px;
+        font-variation-settings: 'wght' 60;
+        font-weight: 300;
+      }
+    </style>
+  </defs>
+  <text class="cls-2" transform="translate(20.89 99.31)"><tspan x="0" y="0">חדשות</tspan></text>
+  <text class="cls-1" transform="translate(-5.65 233.49)"><tspan x="0" y="0">מהבורא</tspan></text>
+</svg>

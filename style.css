@@ -1,0 +1,567 @@
+body {
+ background-image: url("אסטים/blackandwhiteback.png");
+  background-size:contain        /* fills screen */
+  background-position: center;   /* centered */
+  background-repeat: repeat/* no tiling */
+
+  color: black; /* keeping your text color consistent */
+  font-family: "NarkissYair", serif;
+  padding: 20px;
+}
+
+@font-face {
+  font-family: "NarkissYair";
+  src: url("fonts/NarkissYairMono-Regular-TRIAL.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+.content-box {
+  background: #5584ff;        /* cream */
+  color: black;
+  padding: 15px;
+
+  border: 1px solid black;
+  max-width: 800px;
+  width: 95%;
+
+  margin: 0 auto;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-around;   /* center the whole header */
+  align-items: center;        /* vertical alignment */
+
+  gap: 40px;   
+ padding-bottom: 100px;
+}
+
+/* ✅ THIS ensures same size + no distortion */
+.header img {
+  width: 150px;        /* 🔧 change this to control size */
+  height: auto;       /* keeps proportions */
+}
+``
+.luck-link {
+  display: inline-block;
+  border: 1px solid black;
+  padding: 10px 20px;
+  text-decoration: none;
+ color: black; 
+  font-family: "NarkissYair", serif;
+}
+
+.luck-link:hover {
+  background: black;
+  color: white;
+}
+``
+/* === TOP NAVIGATION === */
+.site-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin: 16px 0 32px;
+  font-family: "NarkissYair", serif;
+    font-size: 15px;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: black; 
+  border-bottom: 1px solid transparent;
+}
+
+.site-nav a:hover {
+  border-bottom: 1px solid black;
+}
+
+.nav-separator {
+  font-size: 18px;
+  line-height: 1;
+}
+/* === WHEEL SECTION === */
+.wheel-section {
+  display: flex;
+  flex-direction: column;   /* ✅ vertical stack */
+  align-items: center;      /* ✅ center horizontally */
+  gap: 20px;
+}
+.icon-row {
+  display: flex;          /* ✅ puts them in ONE ROW */
+  gap: 10px;              /* space between icons */
+  justify-content:space-between; 
+
+  flex-wrap: wrap;        /* ✅ wrap instead of overflowing */
+}
+
+
+.icon-row img {
+  width: 120px;
+  height: auto;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.icon-row img {
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+/* ✨ real sparkle */
+.icon-row img:hover {
+  transform: scale(1.15);
+  animation: sparkle-glow 0.6s ease-in-out infinite alternate;
+}
+
+
+
+
+.icon-row img:hover::before {
+  top: -10px;
+  left: 0;
+}
+
+.icon {
+  position: relative;
+  display: inline-block;
+}
+
+.icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("אסטים/Untitled_Artwork.gif"); /* ✅ your GIF */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.2s ease;
+}
+.icon:hover::after {
+  opacity: 1;
+}
+
+ #date {
+  display: block;            /* ✅ forces it onto its own line */
+  text-align: center;        /* ✅ center text */
+
+  font-size: 32px;           /* ✅ make it bigger */
+  font-weight: bold;
+
+  margin: 20px 0;            /* ✅ space above and below */
+
+  color: black;
+}
+.
+.spin-button {
+  color: black;
+  border: 1px solid black;
+  background: transparent;
+
+  font-family: inherit;
+  padding: 8px 24px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.spin-button {
+  position: relative;
+  color: black;
+  border: 1px solid #FFFCE8;
+  background: transparent;
+  font-family: inherit;
+  padding: 8px 24px;
+  cursor: pointer;
+  font-size: 1rem;
+  overflow: hidden;
+}
+
+/* overlay layer */
+.spin-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 252, 232, 0.12);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+/* hover activates overlay */
+.spin-button:hover::after {
+  opacity: 1;
+}
+
+/* === RESPONSIVE WRAPPER === */
+.wheel-wrapper {
+  position: relative;
+  width: clamp(260px, 70vw, 750px);
+  aspect-ratio: 1 / 1; /* lock circle */
+}
+
+/* === WHEEL IMAGE === */
+.wheel {
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  transition: transform 3s cubic-bezier(0.25, 0.85, 0.35, 1);
+  transform-origin: center;
+}
+.pointer-img {
+  position: absolute;
+
+  bottom: -12px;    /* ✅ move below */
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 30px;
+  height: auto;
+
+  z-index: 10;
+}
+
+
+``
+.body-text { 
+  font-family: "NarkissYair" 
+  font-size: 30px;
+ }
+
+.body-text p {
+  display: inline;
+  margin: 0;
+}
+
+
+.overlay {
+  position: fixed;
+  inset: 0;
+
+  display: none;  /* important */
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0,0,0,0.5);
+  z-index: 100;
+}
+
+.fortune-box {
+  background: #FFFCE8;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+/* === MODAL BOX === */
+.fortune-modal {
+  position: relative;
+  background: #372772;
+  color: #FFFCE8;
+  border: 1px solid #FFFCE8;
+  padding: 32px 24px;
+  max-width: 720px;
+  width: 90%;
+  line-height: 1.7;
+}
+
+/* === CLOSE BUTTON === */
+.fortune-close {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: transparent;
+  border: none;
+  color: black;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.fortune-content {
+  white-space: pre-wrap;
+
+  /* ✅ FORCE WRAPPING FOR LONG SLASH STRINGS */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+
+  max-width: 100%;
+}
+
+/* ARCHIVE PAGE */
+
+.archive-title {
+  text-align: center;
+  font-family: "NarkissYair", serif;
+    font-size: 28px;
+  margin: 40px 0 20px;
+}
+
+/* === ARCHIVE GRID === */
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 40px auto 80px;
+  padding: 0 24px;
+}
+
+.archive-item {
+  border: 1px solid #000;
+  padding: 16px 18px;
+
+  /* 🔑 THIS IS THE FIX */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* ensure archive text behaves like main text */
+.archive-item .body-text {
+  margin: 0;
+  max-width: none;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.back-link {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.back-link a {
+  font-family: "NarkissYair", serif;
+    text-decoration: none;
+  color: black;
+  border-bottom: 1px solid black;
+}
+
+/* NAVIGATION */
+.site-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin: 16px 0 32px;
+  font-family: "NarkissYair", serif;
+    font-size: 15px;
+}
+
+.site-nav a {
+  text-decoration: none;
+color: black; 
+  padding: 0;              /* ✅ removes box feel */
+  background: none;        /* ✅ no background */
+  border: none;            /* ✅ no border */
+}
+
+.site-nav a:hover {
+  text-decoration: underline;
+}
+
+.nav-separator {
+  font-size: 18px;
+  line-height: 1;
+}
+/* ARCHIVE GRID */
+
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 16px;
+  font-family: "NarkissYair", serif;}
+
+.archive-card {
+  border: 1px solid black;
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  background: white;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.archive-card:hover {
+  background: #f5f5f5;
+  transform: translateY(-2px);
+}
+
+.archive-card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.archive-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+/* ARCHIVE CARD EXPAND */
+
+.archive-card {
+  border: 1px solid black;
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  background: white;
+  transition: background 0.2s ease;
+}
+
+/* hidden by default */
+.archive-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+/* expanded state */
+.archive-card.active .archive-content {
+  max-height: 300px;   /* enough for text */
+  opacity: 1;
+  margin-top: 12px;
+}
+
+/* optional subtle hover */
+.archive-card:hover {
+  background: #f8f8f8;
+}
+/* OVERLAY BACKGROUND */
+.archive-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* when active */
+.archive-overlay.active {
+  display: flex;
+}
+
+/* OVERLAY CONTENT */
+.archive-overlay-content {
+  position: relative;
+  max-width: 600px;
+  padding: 40px;
+  border: 1px solid black;
+  background: white;
+  text-align: center;
+  font-family: "NarkissYair", serif;}
+
+/* CLOSE BUTTON */
+.overlay-close {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+/* FLOATING MOTION */
+@keyframes drift {
+  0% {
+    transform: translate(-40vw, -20vh) rotate(-8deg);
+  }
+  25% {
+    transform: translate(25vw, -10vh) rotate(6deg);
+  }
+  50% {
+    transform: translate(-15vw, 20vh) rotate(-4deg);
+  }
+  75% {
+    transform: translate(10vw, 10vh) rotate(3deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+.archive-overlay-content {
+  transition: transform 1.2s ease-out;
+}
+
+/* floating state */
+.archive-overlay-content.floating {
+  animation: drift 2.8s ease-in-out forwards;
+}
+
+body {
+  font-family: "NarkissYair", serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== NAV ===== */
+.site-nav {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.site-nav a {
+  text-decoration: none;
+color:black; 
+  margin: 0 6px;
+}
+
+.site-nav a:hover {
+  text-decoration: underline;
+}
+
+.q {
+   text-align: center;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  margin: 40px auto 24px;
+  line-height: 1.3;
+  max-width: 90%;
+
+}
+
+/* ===== MAIN TEXT ===== */
+.body-text {
+  max-width: 700px;
+  margin: 40px auto;
+  font-size: 16px;
+  line-height: 1.7;
+  text-align: right;
+}
+
+.body-text p {
+  margin: 0;
+}
+
+.volatile {
+  display: inline;
+  font-variant-ligatures: none;
+}
+/* original text */
+.volatile .text {
+  visibility: visible;
+}
+
+/* ===== BUTTON ===== */
+.luck-link {
+  display: block;
+  text-align: center;
+  margin: 40px auto;
+  padding: 10px 20px;
+  width: fit-content;
+  border: 1px solid black;
+  text-decoration: none;
+color: black; }
+
+.luck-link:hover {
+  background: black;
+  color: white;
+}
